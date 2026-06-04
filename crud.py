@@ -23,9 +23,12 @@ def deregister_for_sport(id):
     return True
 
 def all_registrants():
+    # # Raw SQL approach
     # with db.session.begin():
     #     registrants = db.session.execute(
     #         text("SELECT * FROM registrants")
     #     ).fetchall()
     # return registrants
+    
+    # SQLAlchemy ORM approach
     return Registrant.query.all()

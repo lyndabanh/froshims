@@ -1,10 +1,15 @@
+import os
+
+from dotenv import load_dotenv
 from flask import Flask, render_template, request, redirect, jsonify, flash
+
 from config import Config
 from model import connect_to_db
 from crud import register_for_sport, deregister_for_sport, all_registrants
 
+load_dotenv()
 app = Flask(__name__)
-app.secret_key = "dev"
+app.secret_key = os.getenv("SECRET_KEY")
 app.config.from_object(Config)
 
 # REGISTRANTS = {}
@@ -53,7 +58,6 @@ def deregister():
             'error': 'Deregistration unsuccessful',
             'message': 'Please try again'
         }), 409
-    return render_template("deregister.html", id=id)
 
 if __name__ == '__main__':
     connect_to_db(app)

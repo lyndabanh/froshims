@@ -3,7 +3,6 @@ from flask_sqlalchemy import SQLAlchemy
 db = SQLAlchemy()
 
 class Registrant(db.Model):
-
     __tablename__ = 'registrants'
     id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     name = db.Column(db.String, unique=True, nullable=False)
@@ -19,3 +18,4 @@ def connect_to_db(flask_app):
 if __name__ == '__main__':
     from app import app
     connect_to_db(app)
+    
